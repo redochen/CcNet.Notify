@@ -170,7 +170,7 @@ namespace CcNet.NotifySvc
 
         private string StartServer()
         {
-            var protocol = cbProtocols.GetSelectedText<string>();
+            var protocol = cbProtocols.GetSelectedText();
             var port = txtPort.Text.ToInt();
             if (port < 80 || port > 35565)
             {
@@ -178,7 +178,7 @@ namespace CcNet.NotifySvc
             }
 
             return RpcService.Singleton.Start(protocol, port,
-                cbNotifiers.GetSelectedText<string>(),
+                cbNotifiers.GetSelectedText(),
                 writeLog: (level, msg) => WriteLine($"[{level.GetValue()}] {msg.GetValue()}"));
         }
 
